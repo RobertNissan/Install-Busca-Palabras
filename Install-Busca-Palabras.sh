@@ -292,10 +292,10 @@ def spinner_thread(stop_event, spinner_state):
 
 def is_package_installed(manager, package):
     try:
-        if manager == "pip":
+        if manager == "pip" or manager == "LDFLAGS_PIP":
             result = subprocess.run(["pip", "show", package], capture_output=True, text=True, timeout=5)
             return result.returncode == 0
-
+            
         elif manager == "pkg":
             try:
                 # Comprobar con pkg list-installed (forma más confiable en Termux)
@@ -307,13 +307,14 @@ def is_package_installed(manager, package):
                 return result.returncode == 0 and "Status: install ok installed" in result.stdout
             except Exception:
                 return False
-
+            
         elif manager in ["apt", "apt-get"]:
             result = subprocess.run(["dpkg", "-s", package], capture_output=True, text=True, timeout=5)
             return result.returncode == 0 and "Status: install ok installed" in result.stdout
-
+            
     except Exception:
         return False
+    
     return False
 
 def run_install_for(manager, package, messages_above, last_height):
@@ -430,3 +431,4 @@ if [ ! -f "$archivo" ]; then
 else
     tar -xvzf Busca-Palabras.tar.gz;rm -r Busca-Palabras.tar.gz;cp -r Busca-Palabras /sdcard/backups;cd Busca-Palabras;chmod +x Menu-Busca-Palabras.sh;dos2unix Menu-Busca-Palabras.sh;chmod +x spawn;bash Menu-Busca-Palabras.sh;cd ${HOME}/Busca-Palabras/;fish
 fi
+
