@@ -427,7 +427,28 @@ instalar_paquetes "pkg:jq bc pv android-tools crunch iproute2 busybox termux-api
 archivo='Busca-Palabras.tar.gz'
 mkdir -p /sdcard/backups
 if [ ! -f "$archivo" ]; then
-    echo -e "";echo -e ""$white"   ••(DESCARGANDO SCRIPT BUSCA-PALABRAS)••    ";sleep 1.5;wget https://www.dropbox.com/s/dat7yzgquuhe3og/Busca-Palabras.tar.gz?dl=0;mv Busca-Palabras.tar.gz?dl=0 Busca-Palabras.tar.gz;tar -xvzf Busca-Palabras.tar.gz;rm -r Busca-Palabras.tar.gz;cp -r Busca-Palabras /sdcard/backups;cd Busca-Palabras;chmod +x Menu-Busca-Palabras.sh;dos2unix Menu-Busca-Palabras.sh;chmod +x spawn;bash Menu-Busca-Palabras.sh;cd ${HOME}/Busca-Palabras/;fish
+    # echo -e "";echo -e ""$white"   ••(DESCARGANDO SCRIPT BUSCA-PALABRAS)••    ";sleep 1.5;wget https://www.dropbox.com/s/dat7yzgquuhe3og/Busca-Palabras.tar.gz?dl=0;mv Busca-Palabras.tar.gz?dl=0 Busca-Palabras.tar.gz;tar -xvzf Busca-Palabras.tar.gz;rm -r Busca-Palabras.tar.gz;cp -r Busca-Palabras /sdcard/backups;cd Busca-Palabras;chmod +x Menu-Busca-Palabras.sh;dos2unix Menu-Busca-Palabras.sh;chmod +x spawn;bash Menu-Busca-Palabras.sh;cd ${HOME}/Busca-Palabras/;fish
+    tamanio=$(wget --spider --server-response "https://raw.githubusercontent.com/RobertNissan/Busca-Palabras/main/Busca-Palabras.tar.gz" 2>&1 | 
+        awk '/Length:/ {print $2}' | head -n 1 | 
+        awk '{
+            size = $1;
+            if (size >= 1073741824) printf "%.2fGB\n", size / 1073741824;
+            else if (size >= 1048576) printf "%.2fMB\n", size / 1048576;
+            else if (size >= 1024) printf "%.2fKB\n", size / 1024;
+            else printf "%dB\n", size;
+        }')
+        tar_extrator_progress() {
+            total=$(tar -tzf Busca-Palabras.tar.gz | wc -l)
+            count=0
+            tar -xvzf Busca-Palabras.tar.gz | while read -r line; do
+                count=$((count + 1))
+                percent=$((count * 100 / total))
+                echo -ne "Progreso: $percent% [$count/$total] archivos extraídos...\r"
+            done
+            echo -e "\nExtracción completada."
+            echo "Descarga completa!!!."
+        }
+        cd ${HOME}/;source Busca-Palabras/config/Colors.sh;clear;echo -e "";echo -e "";echo -e "   ${verde}**(DESCARGANDO SCRIPT BUSCA-PALABRAS)**    ${blanco}";sleep 1.5;echo "Tamaño del archivo: ${tamanio}";wget --no-check-certificate --quiet --show-progress -O "Busca-Palabras.tar.gz" "https://raw.githubusercontent.com/RobertNissan/Busca-Palabras/main/Busca-Palabras.tar.gz";tar_extrator_progress;rm -r Busca-Palabras.tar.gz;cd Busca-Palabras;chmod +x Menu-Busca-Palabras.sh;dos2unix Menu-Busca-Palabras.sh;chmod +x spawn;bash Menu-Busca-Palabras.sh;cd ${HOME}/Busca-Palabras/;fish
 else
     tar -xvzf Busca-Palabras.tar.gz;rm -r Busca-Palabras.tar.gz;cp -r Busca-Palabras /sdcard/backups;cd Busca-Palabras;chmod +x Menu-Busca-Palabras.sh;dos2unix Menu-Busca-Palabras.sh;chmod +x spawn;bash Menu-Busca-Palabras.sh;cd ${HOME}/Busca-Palabras/;fish
 fi
