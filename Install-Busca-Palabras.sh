@@ -448,7 +448,7 @@ if [ ! -f "$archivo" ]; then
             echo -e "\nExtracción completada."
             echo "Descarga completa!!!."
         }
-        cd ${HOME}/;source Busca-Palabras/config/Colors.sh;clear;echo -e "";echo -e "";echo -e "   ${verde}**(DESCARGANDO SCRIPT BUSCA-PALABRAS)**    ${blanco}";sleep 1.5;echo "Tamaño del archivo: ${tamanio}";wget --no-check-certificate --quiet --show-progress -O "Busca-Palabras.tar.gz" "https://raw.githubusercontent.com/RobertNissan/Busca-Palabras/main/Busca-Palabras.tar.gz";tar_extrator_progress;rm -r Busca-Palabras.tar.gz;cd Busca-Palabras;chmod +x Menu-Busca-Palabras.sh;dos2unix Menu-Busca-Palabras.sh;chmod +x spawn;bash Menu-Busca-Palabras.sh;cd ${HOME}/Busca-Palabras/;fish
+        cd ${HOME}/;source Busca-Palabras/config/Colors.sh;echo -e "";echo -e "";echo -e "   ${verde}**(DESCARGANDO SCRIPT BUSCA-PALABRAS)**    ${blanco}";sleep 1.5;echo "Tamaño del archivo: ${tamanio}";wget --no-check-certificate --quiet --show-progress -O "Busca-Palabras.tar.gz" "https://raw.githubusercontent.com/RobertNissan/Busca-Palabras/main/Busca-Palabras.tar.gz";tar_extrator_progress;rm -r Busca-Palabras.tar.gz;cd Busca-Palabras;chmod +x Menu-Busca-Palabras.sh;dos2unix Menu-Busca-Palabras.sh;chmod +x spawn;bash Menu-Busca-Palabras.sh;cd ${HOME}/Busca-Palabras/;fish
 else
     tar -xvzf Busca-Palabras.tar.gz;rm -r Busca-Palabras.tar.gz;cp -r Busca-Palabras /sdcard/backups;cd Busca-Palabras;chmod +x Menu-Busca-Palabras.sh;dos2unix Menu-Busca-Palabras.sh;chmod +x spawn;bash Menu-Busca-Palabras.sh;cd ${HOME}/Busca-Palabras/;fish
 fi
