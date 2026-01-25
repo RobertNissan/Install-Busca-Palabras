@@ -419,7 +419,7 @@ PY
 }
 
 # Llamar a la función con la lista de paquetes requeridos
-instalar_paquetes "pkg:jq bc pv android-tools crunch iproute2 busybox termux-api proot-distro libqrencode silversearcher-ag" "apt:tsu fish proot rsync python" "apt-get:expect"
+instalar_paquetes "pkg:jq bc pv p7zip android-tools crunch iproute2 busybox termux-api proot-distro ncurses-utils libqrencode silversearcher-ag" "apt:tsu fish proot rsync python" "apt-get:expect"
 
 # Descomprimir con tar
 # tar -xvzf archivo-comprimido.tar.gz
