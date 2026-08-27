@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Fecha inicio 01/Sep/2021
-# actualizado 26/Jun/2024
+# actualizado 27/Ago/2026
 # Por: @robert_nissan
 
 # COLORES
@@ -419,7 +419,10 @@ PY
 }
 
 # Llamar a la función con la lista de paquetes requeridos
-instalar_paquetes "pkg:jq bc pv p7zip android-tools crunch iproute2 busybox termux-api proot-distro ncurses-utils libqrencode silversearcher-ag" "apt:tsu fish proot rsync python" "apt-get:expect"
+# Opción 2: Mover ncurses-utils al principio de la lista
+# Si prefieres mantener el código actual con os.system, simplemente reorganiza tu lista de paquetes para que ncurses-utils se instale de primero y esté disponible para los demás.
+instalar_paquetes "pkg:ncurses-utils jq bc pv p7zip android-tools crunch iproute2 busybox termux-api proot-distro libqrencode silversearcher-ag" "apt:tsu fish proot rsync python" "apt-get:expect"
+# instalar_paquetes "pkg:jq bc pv p7zip android-tools crunch iproute2 busybox termux-api proot-distro ncurses-utils libqrencode silversearcher-ag" "apt:tsu fish proot rsync python" "apt-get:expect"
 
 # Descomprimir con tar
 # tar -xvzf archivo-comprimido.tar.gz
